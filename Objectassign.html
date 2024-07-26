@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object.assign Form Example</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    .box {
+      width: 100%;
+      height: 100px;
+      background-color: color-mix(in srgb, white, orange var(--shade-degree));
+    }
+    .box:nth-child(1) {
+      --shade-degree: 20%;
+    }
+    .box:nth-child(2) {
+      --shade-degree: 40%;
+    }
+    .box:nth-child(3) {
+      --shade-degree: 60%;
+    }
+    .box:nth-child(4) {
+      --shade-degree: 80%;
+    }
+    .box:nth-child(5) {
+      --shade-degree: 100%;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <h1>Form Data Aggregation</h1>
+    <form action="" id="form1">
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        placeholder="firstName"
+      /><br /><br />
+      <label for="lasttName">Last Name:</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        placeholder="lastName"
+      /><br /><br />
+    </form>
+    <form action="" id="form2">
+      <h2>Contact Information</h2>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" /><br /><br />
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" /><br /><br />
+    </form>
+    <button onclick="mergeData()">Submit</button>
+
+    <h2>Submitted Data</h2>
+    <div id="output"></div>
+    <script>
+      function mergeData() {
+        const form1Data = {
+          firstName: document.getElementById("firstName").value,
+          lastName: document.getElementById("lastName").value,
+        };
+        const form2Data = {
+          email: document.getElementById("email").value,
+          phone: document.getElementById("phone").value,
+        };
+
+        const mergedData = Object.assign({}, form1Data, form2Data);
+
+        document.getElementById("output").innerHTML = `
+        <p>First Name: ${mergedData.firstName}</p>
+        <p>Last Name:  ${mergedData.lastName}</p>
+        <p>Email : ${mergedData.email}</p>
+        <p>Phone : ${mergedData.phone}</p>`;
+      }
+    </script>
+  </body>
+</html>
